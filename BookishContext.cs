@@ -12,7 +12,7 @@ namespace Bookish.Models.Database
         public DbSet<MemberDbModel>? Members { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         { 
-            optionsBuilder.UseSqlServer(@"Server=localhost;Database=Bookish;TrustServerCertificate=True; ");
+            optionsBuilder.UseSqlServer(@"Server=localhost;Database=Bookish;Trusted_Connection=True;TrustServerCertificate=True;");
         }
     }
 }
