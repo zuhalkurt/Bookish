@@ -10,6 +10,7 @@ public class HomeController : Controller
     private BookService _bookService = new BookService(); 
     private LoanService _loanService = new LoanService();
     private AuthorService _authorService = new AuthorService(); 
+    private MemberService _memberService = new MemberService(); 
     private readonly ILogger<HomeController> _logger;
 
     public HomeController(ILogger<HomeController> logger)
@@ -41,6 +42,11 @@ public class HomeController : Controller
     {
         var authors = _authorService.GetAllAuthors();
         return View(authors);
+    }
+     public IActionResult MemberList()
+    {
+        var members = _memberService.GetAllMembers();
+        return View(members);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

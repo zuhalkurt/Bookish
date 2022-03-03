@@ -34,6 +34,7 @@ namespace Bookish.Services
                     Book = new Book
                     {
                         Title = dbLoan.Books.Title,
+<<<<<<< HEAD
                         Author = dbLoan.Books
                             .Authors
                             .Select(
@@ -42,11 +43,18 @@ namespace Bookish.Services
                                     Name = a.Name                         
                                 })
                             .ToList(),
+=======
+                        Author = dbLoan.Books.Authors.Select(
+                            a => new Author
+                   {
+                       Name = a.Name                         
+                        }).ToList(),
+>>>>>>> c776c8de06095cabc171b63f28fafd7158b3e4f4
 
                     },
                     CheckedOut = dbLoan.CheckedOut,
                     DueBack = dbLoan.DueBack,
-                    ReturnedOn = dbLoan.ReturnedOn,
+                    
                 });
                 
             }
