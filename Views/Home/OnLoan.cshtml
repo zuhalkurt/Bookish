@@ -1,0 +1,20 @@
+@model List<Loan>
+@{
+    ViewData["Title"] = "On Loan";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Books Currently On Loan</h1>
+    <ul>
+        @foreach (Loan loan in Model)
+        {
+            <li>
+                <h2>@loan.Book.Title</h2>
+                <p>By @loan.Book.Author.Name</p>
+                <p>Checked out by @loan.Member.Name on @Convert.ToString(string.Format("{0:dd/MM/yyyy}", loan.CheckedOut))</p>
+                <p>Due back on @Convert.ToString(string.Format("{0:dd/MM/yyyy}", loan.DueBack))</p>
+                
+            </li>
+        }
+    </ul>
+</div>
