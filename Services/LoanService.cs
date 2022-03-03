@@ -34,11 +34,14 @@ namespace Bookish.Services
                     Book = new Book
                     {
                         Title = dbLoan.Books.Title,
-                        Author = dbLoan.Books.Authors.Select(
-                            a => new Author
-                        {
-                             Name = a.Name                         
-                        }).ToList(),
+                        Author = dbLoan.Books
+                            .Authors
+                            .Select(
+                                a => new Author
+                                {
+                                    Name = a.Name                         
+                                })
+                            .ToList(),
 
                     },
                     CheckedOut = dbLoan.CheckedOut,

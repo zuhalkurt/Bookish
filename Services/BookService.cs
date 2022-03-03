@@ -23,11 +23,13 @@ namespace Bookish.Services
                    BookCoverUrl = dbBook.BookCoverUrl,
                    Year = dbBook.Year,
                    Author = dbBook
-                   .Authors
-                   .Select(a => new Author
-                   {
-                       Name = a.Name
-                   }).ToList(),
+                        .Authors
+                        .Select(
+                            a => new Author
+                            {
+                                Name = a.Name
+                            })
+                        .ToList(),
                });
                
            }

@@ -14,6 +14,7 @@ namespace Bookish.Repositories
              .OnLoan
              .Include(l => l.Members)
              .Include(l => l.Books)
+                .ThenInclude(a => a.Authors)
              .ToList();
         } 
     }
