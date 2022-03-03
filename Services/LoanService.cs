@@ -36,14 +36,14 @@ namespace Bookish.Services
                         Title = dbLoan.Books.Title,
                         Author = dbLoan.Books.Authors.Select(
                             a => new Author
-                        {
-                             Name = a.Name                         
+                   {
+                       Name = a.Name                         
                         }).ToList(),
 
                     },
                     CheckedOut = dbLoan.CheckedOut,
                     DueBack = dbLoan.DueBack,
-                    ReturnedOn = dbLoan.ReturnedOn,
+                    
                 });
                 
             }
