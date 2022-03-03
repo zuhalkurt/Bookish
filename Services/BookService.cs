@@ -5,35 +5,32 @@ namespace Bookish.Services
 {
     public class BookService
     {
-        public BookRepo _books  = new BookRepo();
-        public AuthorRepo _authors = new AuthorRepo();
+        private BookRepo _books  = new BookRepo();
+        private AuthorRepo _authors = new AuthorRepo();
 
         public List<Book> GetAllBooks()
         {
-            var dbBooks = _books.GetAllBooks();
-            var dbAuthors = _authors.GetAllAuthors();
+           var allDBBooks = _books.GetAllBooks();
 
-            List<Book> result = new List<Book>();
-            foreach (var dbBook in dbBooks)
-            {
-                // var dbAuthor = dbAuthors.Find( a => a.Id == dbBook.AuthorId);
-                // if (dbAuthor == null)
-                // {
-                //     throw new NullReferenceException("Could not find author");
-                // }
-                
-                // result.Add(new Book
-                // {
-                //     Isbn = dbBook.Isbn,
-                //     Title = dbBook.Title,
-                //     Author = new Author
-                //     {
-                //         Name = dbAuthor.Name
-                //     },
-                //     Year = dbBook.Year,
-                //     BookCoverUrl = dbBook.BookCoverUrl,
-                // });
-            }
+           List<Book> result = new List<Book>();
+
+           foreach (var dbBook in allDBBooks)
+           {
+               result.Add(new Book
+               {
+                   Isbn = dbBook.Isbn,
+                   Title = dbBook.Title,
+                   BookCoverUrl = dbBook.BookCoverUrl,
+                   Year = dbBook.Year,
+                   Author = dbBook
+                   .Authors
+                   .Select(a => new Author
+                   {
+                       Name = a.Name
+                   }).ToList(),
+               });
+               
+           }
             return result;
         }
 
