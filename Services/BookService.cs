@@ -16,23 +16,23 @@ namespace Bookish.Services
             List<Book> result = new List<Book>();
             foreach (var dbBook in dbBooks)
             {
-                var dbAuthor = dbAuthors.Find( a => a.Id == dbBook.AuthorId);
-                if (dbAuthor == null)
-                {
-                    throw new NullReferenceException("Could not find author");
-                }
+                // var dbAuthor = dbAuthors.Find( a => a.Id == dbBook.AuthorId);
+                // if (dbAuthor == null)
+                // {
+                //     throw new NullReferenceException("Could not find author");
+                // }
                 
-                result.Add(new Book
-                {
-                    Isbn = dbBook.Isbn,
-                    Title = dbBook.Title,
-                    Author = new Author
-                    {
-                        Name = dbAuthor.Name
-                    },
-                    Year = dbBook.Year,
-                    BookCoverUrl = dbBook.BookCoverUrl,
-                });
+                // result.Add(new Book
+                // {
+                //     Isbn = dbBook.Isbn,
+                //     Title = dbBook.Title,
+                //     Author = new Author
+                //     {
+                //         Name = dbAuthor.Name
+                //     },
+                //     Year = dbBook.Year,
+                //     BookCoverUrl = dbBook.BookCoverUrl,
+                // });
             }
             return result;
         }
