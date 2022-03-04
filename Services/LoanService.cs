@@ -3,12 +3,28 @@ using Bookish.Models;
 
 namespace Bookish.Services
 {
-    public class LoanService
+    public interface ILoanService
     {
-        private LoanRepo _loans  = new LoanRepo();
-        private MemberRepo _members = new MemberRepo();
-        private BookRepo _books = new BookRepo();
-        private AuthorRepo _authors = new AuthorRepo();
+        public List<Loan> GetAllLoans();
+    }
+    public class LoanService : ILoanService
+    {
+        private ILoanRepo _loans;
+        private IMemberRepo _members;
+        private IBookRepo _books;
+        private IAuthorRepo _authors;
+        public LoanService(ILoanRepo loans)
+        {
+            _loans = loans;
+            _members = new MemberRepo();
+            _books = new BookRepo();
+            _authors = new AuthorRepo();
+        }
+        
+        // private LoanRepo _loans  = new LoanRepo();
+        // private MemberRepo _members = new MemberRepo();
+        // private BookRepo _books = new BookRepo();
+        //private AuthorRepo _authors = new AuthorRepo();
 
         public List<Loan> GetAllLoans()
         {

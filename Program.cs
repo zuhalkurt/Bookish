@@ -1,7 +1,17 @@
+using Bookish.Repositories;
+using Bookish.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IBookRepo, BookRepo>();
+builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<IAuthorRepo, AuthorRepo>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<IMemberRepo, MemberRepo>();
+builder.Services.AddScoped<IMemberService, MemberService>();
+builder.Services.AddScoped<ILoanRepo, LoanRepo>();
+builder.Services.AddScoped<ILoanService, LoanService>();
 
 var app = builder.Build();
 

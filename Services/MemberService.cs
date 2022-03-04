@@ -3,9 +3,18 @@ using Bookish.Models;
 
 namespace Bookish.Services
 {
-       public class MemberService
+    public interface IMemberService
     {
-        public MemberRepo _members = new MemberRepo();   
+        public List<Member> GetAllMembers();
+    }
+    public class MemberService : IMemberService
+    {
+        private IMemberRepo _members;
+
+        public MemberService(IMemberRepo members)
+        {
+            _members = members;
+        }
 
         public List<Member> GetAllMembers()
         {

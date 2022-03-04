@@ -1,11 +1,14 @@
 using Bookish.Models.Database;
-using Bookish.Models;
 using Microsoft.EntityFrameworkCore;
 
 
 namespace Bookish.Repositories
 {
-    public class BookRepo
+    public interface IBookRepo
+    {
+        public List<BookDbModel> GetAllBooks();
+    }
+    public class BookRepo : IBookRepo
     {
         private BookishContext context = new BookishContext();
         public List<BookDbModel> GetAllBooks()

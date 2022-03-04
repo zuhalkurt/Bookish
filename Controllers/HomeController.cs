@@ -2,20 +2,33 @@
 using Microsoft.AspNetCore.Mvc;
 using Bookish.Models;
 using Bookish.Services;
+using Bookish.Repositories;
 
 namespace Bookish.Controllers;
 
 public class HomeController : Controller
 {
-    private BookService _bookService = new BookService(); 
-    private LoanService _loanService = new LoanService();
-    private AuthorService _authorService = new AuthorService(); 
-    private MemberService _memberService = new MemberService(); 
+    private readonly IBookService _bookService; 
+    private readonly ILoanService _loanService;
+    private readonly IAuthorService _authorService; 
+    private readonly IMemberService _memberService; 
     private readonly ILogger<HomeController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(
+        ILogger<HomeController> logger,
+        IBookService bookService,
+        ILoanService loanService,
+        IAuthorService authorService,
+        IMemberService memberService
+        )
     {
+
         _logger = logger;
+        _bookService = bookService;
+        _loanService = loanService;
+        _authorService = authorService;
+        _memberService = memberService;
+
     }
 
     public IActionResult Index()

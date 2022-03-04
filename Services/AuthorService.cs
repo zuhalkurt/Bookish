@@ -3,10 +3,17 @@ using Bookish.Models;
 
 namespace Bookish.Services
 {
-       public class AuthorService
+    public interface IAuthorService
     {
-        public AuthorRepo _authors = new AuthorRepo();   
-
+        public List<Author> GetAllAuthors();
+    }
+    public class AuthorService : IAuthorService
+    {
+        private IAuthorRepo _authors;   
+        public AuthorService(IAuthorRepo authors)
+        {
+            _authors = authors;
+        }
         public List<Author> GetAllAuthors()
         {
             var authors = new List<Author>();
