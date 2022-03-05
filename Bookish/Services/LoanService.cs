@@ -20,12 +20,6 @@ namespace Bookish.Services
             _books = new BookRepo();
             _authors = new AuthorRepo();
         }
-        
-        // private LoanRepo _loans  = new LoanRepo();
-        // private MemberRepo _members = new MemberRepo();
-        // private BookRepo _books = new BookRepo();
-        //private AuthorRepo _authors = new AuthorRepo();
-
         public List<Loan> GetAllLoans()
         {
             var dbLoans = _loans.GetAllLoans();
@@ -37,7 +31,6 @@ namespace Bookish.Services
 
             foreach (var dbLoan in dbLoans)
             {   
-               
                 result.Add(new Loan
                 {
                     Member = new Member 
@@ -58,16 +51,13 @@ namespace Bookish.Services
                                     Name = a.Name                         
                                 })
                             .ToList(),
-
                     },
                     CheckedOut = dbLoan.CheckedOut,
                     DueBack = dbLoan.DueBack,
-                    
-                });
-                
+                    ReturnedOn = dbLoan.ReturnedOn
+                });   
             }
             return result;
         }
-    
     }
 }
