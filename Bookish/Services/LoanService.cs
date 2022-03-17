@@ -50,7 +50,7 @@ namespace Bookish.Services
                     Book = new Book
                     {
                         Title = dbLoan.Books.Title,
-                        Author = dbLoan.Books
+                        Authors = dbLoan.Books
                             .Authors
                             .Select(
                                 a => new Author

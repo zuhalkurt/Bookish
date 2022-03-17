@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Bookish.Models;
 using Bookish.Services;
 using Bookish.Repositories;
+using Bookish.Models.Requests;
 
 namespace Bookish.Controllers;
 
@@ -46,6 +47,20 @@ public class HomeController : Controller
         var books = _bookService.GetAllBooks();
         return View(books);
     }
+     public IActionResult CreateBookForm()
+        {
+            return View();
+        }
+
+        [HttpPost]
+
+        public IActionResult CreateBook(
+            [FromForm] CreateBookRequest createBookRequest
+        )
+        {
+            var newBook = _bookService.CreateBook(createBookRequest);
+            return Created("/Home/BookList", newBook);
+        }
     public IActionResult OnLoan()
     {
         var loans = _loanService.GetAllLoans();
