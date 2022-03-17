@@ -1,0 +1,30 @@
+@model Bookish.Models.Requests.CreateBookRequest
+@{
+    ViewData["Title"] = "Add New Book";
+}
+
+<div class="text-center">
+    <h1 class="display-4">New Book</h1>
+    <form 
+        asp-controller="Home"
+        asp-action="CreateBook"
+        method="post"
+    >
+        <label asp-for="Isbn">
+            ISBN: <input asp-for="Isbn">
+        </label>
+        <label asp-for="Title">
+            Title: <input asp-for="Title">
+        </label>
+        <label asp-for="BookCoverUrl">
+            Book Cover Url: <input asp-for="BookCoverUrl">
+        </label>
+        <label asp-for="Year">
+            Year published: <input asp-for="Year">
+        </label>
+        <label asp-for="Authors">
+            Author: <select asp-for="Authors" asp-items="Model.Authors"></select>
+        </label>
+        <input type="submit" value="Add to library">       
+            
+</form>

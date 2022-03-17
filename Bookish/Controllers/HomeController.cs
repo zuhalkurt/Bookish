@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Bookish.Models;
+using Bookish.Models.Requests;
 using Bookish.Services;
-using Bookish.Repositories;
 
 namespace Bookish.Controllers;
 
@@ -46,6 +46,19 @@ public class HomeController : Controller
         var books = _bookService.GetAllBooks();
         return View(books);
     }
+    [HttpGet]
+    public IActionResult CreateBookForm()
+    {
+        var model = new CreateBookRequest();
+        return View(model);
+    }
+    [HttpPost]
+        public IActionResult CreateBook([FromForm] CreateBookRequest createBookRequest)
+        {
+            var newBook = _bookService.CreateBook(createBookRequest);
+
+            return Created("/Home/BookList", newBook);
+        }
     public IActionResult OnLoan()
     {
         var loans = _loanService.GetAllLoans();

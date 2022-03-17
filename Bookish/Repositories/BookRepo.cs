@@ -7,6 +7,7 @@ namespace Bookish.Repositories
     public interface IBookRepo
     {
         public List<BookDbModel> GetAllBooks();
+        public BookDbModel CreateBook(BookDbModel newBook);
     }
     public class BookRepo : IBookRepo
     {
@@ -18,5 +19,11 @@ namespace Bookish.Repositories
              .Include(b => b.Authors)
              .ToList();
         } 
+        public BookDbModel CreateBook(BookDbModel newBook)
+        {
+            var insertedBook = context.BookList.Add(newBook);
+            context.SaveChanges();
+            return insertedBook.Entity;
+        }
     }
 }
