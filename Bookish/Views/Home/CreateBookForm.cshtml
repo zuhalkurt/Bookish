@@ -22,8 +22,8 @@
         <label asp-for="Year">
             Year published: <input asp-for="Year">
         </label>
-        <label asp-for="Authors">
-            Author: <select asp-for="Authors" asp-items="Model.Authors"></select>
+        <label asp-for="AuthorIds[0]">
+            Author: <select asp-for="AuthorIds[0]" asp-items="ViewBag.Authors"></select>
         </label>
         <input type="submit" value="Add to library">       
             

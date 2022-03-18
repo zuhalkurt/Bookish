@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Bookish.Models;
 using Bookish.Models.Requests;
 using Bookish.Services;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Bookish.Controllers;
 
@@ -46,11 +47,18 @@ public class HomeController : Controller
         var books = _bookService.GetAllBooks();
         return View(books);
     }
-    [HttpGet]
+   
     public IActionResult CreateBookForm()
     {
-        var model = new CreateBookRequest();
-        return View(model);
+        var authors = _authorService.GetAllAuthors();
+        ViewBag.Authors = authors.Select(
+            a => new SelectListItem
+            {
+                Value = a.Id.ToString(),
+                Text = a.Name
+            }
+        );
+        return View();
     }
     [HttpPost]
         public IActionResult CreateBook([FromForm] CreateBookRequest createBookRequest)

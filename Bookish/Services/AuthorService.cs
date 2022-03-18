@@ -17,15 +17,12 @@ namespace Bookish.Services
         public List<Author> GetAllAuthors()
         {
             var authors = new List<Author>();
-            var dbAuthors = _authors.GetAllAuthors();
+            var allDbAuthors = _authors.GetAllAuthors();
 
-            foreach (var author in dbAuthors)
+            foreach (var dbAuthor in allDbAuthors)
             {
                  authors.Add(
-                    new Author
-                    {
-                        Name = author.Name 
-                    }
+                    new Author(dbAuthor)
                 );
             }
             return authors;
