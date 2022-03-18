@@ -4,6 +4,7 @@ using Bookish.Models;
 using Bookish.Services;
 using Bookish.Repositories;
 using Bookish.Models.Requests;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Bookish.Controllers;
 
@@ -49,6 +50,14 @@ public class HomeController : Controller
     }
      public IActionResult CreateBookForm()
         {
+            var authors = _authorService.GetAllAuthors();
+            ViewBag.Authors = authors.Select(
+                a => new SelectListItem
+                {
+                    Value = a.Id.ToString(),
+                    Text = a.Name
+                }
+            );
             return View();
         }
 

@@ -1,5 +1,7 @@
 using Bookish.Repositories;
 using Bookish.Models;
+using Bookish.Models.Requests;
+using Bookish.Models.Database;
 
 namespace Bookish.Services
 {
@@ -7,28 +9,28 @@ namespace Bookish.Services
     {
         public List<Author> GetAllAuthors();
     }
+
     public class AuthorService : IAuthorService
     {
-        private IAuthorRepo _authors;   
+        private IAuthorRepo _authors;
+
         public AuthorService(IAuthorRepo authors)
         {
             _authors = authors;
         }
+
         public List<Author> GetAllAuthors()
         {
-            var authors = new List<Author>();
-            var dbAuthors = _authors.GetAllAuthors();
+            var allDbAuthors = _authors.GetAllAuthors();
 
-            foreach (var author in dbAuthors)
+            List<Author> result = new List<Author>();
+
+            foreach (var dbAuthor in allDbAuthors)
             {
-                 authors.Add(
-                    new Author
-                    {
-                        Name = author.Name 
-                    }
-                );
+                result.Add(new Author(dbAuthor));
             }
-            return authors;
+
+            return result;
         }
     }
 }

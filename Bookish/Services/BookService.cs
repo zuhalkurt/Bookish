@@ -1,7 +1,7 @@
 using Bookish.Repositories;
 using Bookish.Models;
-using Bookish.Models.Database;
 using Bookish.Models.Requests;
+using Bookish.Models.Database;
 
 namespace Bookish.Services
 {
@@ -38,30 +38,7 @@ namespace Bookish.Services
     
         public Book CreateBook(CreateBookRequest createBookRequest)
         {
-            var insertedAuthors = new List<AuthorDbModel>();
-
-            if (createBookRequest.AuthorNames != null)
-            {
-                foreach (var authorName in createBookRequest.AuthorNames)
-                {
-                    insertedAuthors.Add(
-                        new AuthorDbModel
-                        {
-                            Name = authorName,
-                        }
-                    );
-                }
-            }
-
-            var insertedBook = _books.CreateBook(
-                new BookDbModel
-                {
-                    Isbn = createBookRequest.Isbn,
-                    Title = createBookRequest.Title,
-                    BookCoverUrl = createBookRequest.BookCoverUrl,
-                    Authors = insertedAuthors,
-                }
-            );
+            var insertedBook = _books.CreateBook(createBookRequest);
 
             return new Book(insertedBook);
         }

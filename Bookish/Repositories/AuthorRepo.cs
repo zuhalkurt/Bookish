@@ -6,6 +6,7 @@ namespace Bookish.Repositories
     public interface IAuthorRepo
     {
         public List<AuthorDbModel> GetAllAuthors();
+        public AuthorDbModel GetById(int id);
         public AuthorDbModel CreateAuthor(AuthorDbModel newAuthor);
     }
 
@@ -19,6 +20,13 @@ namespace Bookish.Repositories
                 .Authors
                 .Include(a => a.Books)
                 .ToList();
+        }
+        public AuthorDbModel GetById(int id)
+        {
+            return context  
+                .Authors
+                .Where(a => a.Id == id)
+                .Single();
         }
 
         public AuthorDbModel CreateAuthor(AuthorDbModel newAuthor)

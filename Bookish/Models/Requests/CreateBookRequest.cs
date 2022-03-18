@@ -7,7 +7,7 @@ namespace Bookish.Models.Requests
         public string? Isbn { get; set; }
         public string? Title { get; set; }
         public string? BookCoverUrl { get; set; }
-        public List<string>? AuthorNames { get; set; }
+        public List<int>? AuthorIds { get; set; }
         public  int Year { get; set ;}
     }
 }
