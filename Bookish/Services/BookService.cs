@@ -1,6 +1,5 @@
 using Bookish.Repositories;
 using Bookish.Models;
-using Bookish.Models.Database;
 using Bookish.Models.Requests;
 
 namespace Bookish.Services

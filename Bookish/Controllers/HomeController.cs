@@ -60,13 +60,24 @@ public class HomeController : Controller
         );
         return View();
     }
+    public IActionResult CreateAuthorForm()
+    {
+        return View();
+    }
     [HttpPost]
-        public IActionResult CreateBook([FromForm] CreateBookRequest createBookRequest)
-        {
-            var newBook = _bookService.CreateBook(createBookRequest);
+    public IActionResult CreateBook([FromForm] CreateBookRequest createBookRequest)
+    {
+        var newBook = _bookService.CreateBook(createBookRequest);
 
-            return Created("/Home/BookList", newBook);
-        }
+        return Created("/Home/BookList", newBook);
+    }
+    [HttpPost]
+    public IActionResult CreateAuthor([FromForm] CreateAuthorRequest createAuthorRequest)
+    {
+        var newAuthor = _authorService.CreateAuthor(createAuthorRequest);
+
+        return Created("/Home/BookList", newAuthor);
+    }
     public IActionResult OnLoan()
     {
         var loans = _loanService.GetAllLoans();

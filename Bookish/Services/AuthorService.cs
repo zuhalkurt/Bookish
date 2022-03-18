@@ -1,11 +1,13 @@
 using Bookish.Repositories;
 using Bookish.Models;
+using Bookish.Models.Requests;
 
 namespace Bookish.Services
 {
     public interface IAuthorService
     {
         public List<Author> GetAllAuthors();
+        public Author CreateAuthor(CreateAuthorRequest createAuthorRequest);
     }
     public class AuthorService : IAuthorService
     {
@@ -26,6 +28,11 @@ namespace Bookish.Services
                 );
             }
             return authors;
+        }
+        public Author CreateAuthor(CreateAuthorRequest createAuthorRequest)
+        {
+            var insertedAuthor = _authors.CreateAuthor(createAuthorRequest);
+            return new Author(insertedAuthor);
         }
     }
 }

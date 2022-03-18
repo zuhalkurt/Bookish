@@ -1,4 +1,5 @@
 using Bookish.Models.Database;
+
 namespace Bookish.Models
 {
     public class Author

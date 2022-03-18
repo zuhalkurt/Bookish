@@ -1,0 +1,18 @@
+@model Bookish.Models.Requests.CreateAuthorRequest
+@{
+    ViewData["Title"] = "Add New Author";
+}
+
+<div class="text-center">
+    <h1 class="display-4">New Author</h1>
+    <form 
+        asp-controller="Home"
+        asp-action="CreateAuthor"
+        method="post"
+    >
+        <label asp-for="Name">
+            Name: <input asp-for="Name">
+        </label>
+        <input type="submit" value="Add to library">       
+            
+</form>
