@@ -20,6 +20,7 @@ public class Tests
     {
         //Arrange
         var fakeBookRepo = A.Fake<IBookRepo>();
+        var fakeAuthorRepo = A.Fake<IAuthorRepo>();
         A.CallTo(() => fakeBookRepo.GetAllBooks()).Returns(
             new List<BookDbModel>
             {
@@ -64,7 +65,7 @@ public class Tests
                         },
             }
         );
-        var service = new BookService(fakeBookRepo);
+        var service = new BookService(fakeBookRepo, fakeAuthorRepo);
 
         //Act
 

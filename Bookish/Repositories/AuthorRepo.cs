@@ -1,4 +1,5 @@
 using Bookish.Models.Database;
+using Bookish.Models.Requests;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -7,7 +8,7 @@ namespace Bookish.Repositories
     public interface IAuthorRepo
     {
         public List<AuthorDbModel> GetAllAuthors();
-        public AuthorDbModel CreateAuthor(AuthorDbModel newAuthor);
+        public AuthorDbModel CreateAuthor(CreateAuthorRequest newAuthor);
         public AuthorDbModel GetById(int authorId);
     }
     public class AuthorRepo : IAuthorRepo
@@ -27,7 +28,7 @@ namespace Bookish.Repositories
                 .Where(a => a.Id == authorId)
                 .Single();
         }
-        public AuthorDbModel CreateAuthor(AuthorDbModel newAuthor)
+        public AuthorDbModel CreateAuthor(CreateAuthorRequest newAuthor)
         {
             var authorToInsert = new AuthorDbModel
             {

@@ -4,6 +4,7 @@ using Bookish.Models;
 using Bookish.Models.Requests;
 using Bookish.Services;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Bookish.Models.Database;
 
 namespace Bookish.Controllers;
 
@@ -76,7 +77,7 @@ public class HomeController : Controller
     {
         var newAuthor = _authorService.CreateAuthor(createAuthorRequest);
 
-        return Created("/Home/BookList", newAuthor);
+        return Created("/Home/AuthorList", newAuthor);
     }
     public IActionResult OnLoan()
     {
